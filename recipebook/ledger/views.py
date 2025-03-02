@@ -1,8 +1,9 @@
 from django.shortcuts import render
+from models import Recipe
 
 # Create your views here.
 
-def recipelist(request):
+def recipeList(request):
     ctx = {
         "recipes": [
             {
@@ -70,7 +71,7 @@ def recipelist(request):
 
     return render(request, "recipes.html", ctx)
 
-def recipe_one(request):
+def recipeOne(request):
     ctx = {
         "name": "Recipe 1",
         "ingredients": [
@@ -100,7 +101,7 @@ def recipe_one(request):
 
     return render(request, "recipe.html", ctx)
 
-def recipe_two(request):
+def recipeTwo(request):
     ctx = {
         "name": "Recipe 2",
         "ingredients": [
@@ -136,4 +137,8 @@ def recipe_two(request):
         "link": "/recipe/2"
     }
 
-    return render(request, "recipe.html", ctx )
+    return render(request, "recipe.html", ctx)
+
+def recipesInDatabase(request):
+    recipe = Recipe.objects.all()
+    return render(request, 'recipes.html', {'recipes': recipe})
