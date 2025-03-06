@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Recipe, RecipeIngredient
+from .models import Recipe
 
 def recipe_list(request):
     recipes = Recipe.objects.all()
@@ -8,9 +8,7 @@ def recipe_list(request):
 
 def recipe_detail(request, id):
     recipe = Recipe.objects.get(id=id)
-    recipe_ingredient = RecipeIngredient.objects.filter(Recipe = recipe)
     context = {
-        'recipe': recipe,
-        'recipe_ingredient': recipe_ingredient,
+        'recipe': recipe
     }
     return render(request, 'recipe.html', context)
