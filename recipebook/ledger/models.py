@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Ingredient(models.Model):
     '''
-    accepts ingredient name
+    Accepts ingredient name.
     '''
     name = models.CharField(max_length=100)
 
@@ -17,7 +17,7 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     '''
-    accepts recipe name and author name, automatically adds date and time created and modified
+    Accepts recipe name and author name, automatically adds date and time created and modified.
     '''
     name = models.CharField(max_length=100)
     author = models.CharField(max_length=100, default='')
@@ -32,7 +32,7 @@ class Recipe(models.Model):
 
 class RecipeIngredient(models.Model):
     '''
-    connects recipe and ingredient models
+    Connects recipe and ingredient models.
     '''
     Quantity = models.CharField(max_length=100)
     Ingredient = models.ForeignKey(
@@ -48,7 +48,7 @@ class RecipeIngredient(models.Model):
 
 class Profile(models.Model):
     '''
-    extends User model, accepts name and bio
+    Extends User model, accepts name and bio.
     '''
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
