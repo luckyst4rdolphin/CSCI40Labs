@@ -2,7 +2,17 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-# Create your models here.
+class Profile(models.Model):
+    '''
+    Extends User model, accepts name and bio.
+    '''
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    bio = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
 class Ingredient(models.Model):
     '''
     Accepts ingredient name.
@@ -20,7 +30,12 @@ class Recipe(models.Model):
     Accepts recipe name and author name, automatically adds date and time created and modified.
     '''
     name = models.CharField(max_length=100)
-    author = models.CharField(max_length=100, default='')
+    author = models.ForeignKey(
+        Profile,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -45,12 +60,4 @@ class RecipeIngredient(models.Model):
         on_delete=models.CASCADE,
         related_name="ingredients"
         )
-
-class Profile(models.Model):
-    '''
-    Extends User model, accepts name and bio.
-    '''
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-    bio = models.CharField(max_length=255)
     
