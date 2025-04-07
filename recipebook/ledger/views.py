@@ -22,6 +22,9 @@ class RecipeDetailView(LoginRequiredMixin, DetailView):
     extra_context = {"images":RecipeImage.objects.all}
 
 class RecipeCreateView(LoginRequiredMixin, CreateView):
+    '''
+    Creates base view for a new recipe form.
+    '''
     model = Recipe
     template_name = "recipe_form.html"
     form_class = RecipeForm
@@ -37,6 +40,9 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
         return context
 
 class RecipeIngredientCreateView(LoginRequiredMixin, CreateView):
+    '''
+    Creates base view for recipe ingredient or recipe detail form.
+    '''
     model = RecipeIngredient
     template_name = "recipeingredient_form.html"
     form_class = RecipeIngredientForm
@@ -48,6 +54,9 @@ class RecipeIngredientCreateView(LoginRequiredMixin, CreateView):
         return context
     
 class IngredientCreateView(LoginRequiredMixin, CreateView):
+    '''
+    Creates a base view for the new ingredient form.
+    '''
     model = Ingredient
     template_name = "ingredient_form.html"
     form_class = IngredientForm
@@ -59,6 +68,9 @@ class IngredientCreateView(LoginRequiredMixin, CreateView):
         return context
     
 class RecipeImageCreateView(LoginRequiredMixin, CreateView):
+    '''
+    Creates a base view for the new recipe image form.
+    '''
     model = RecipeImage
     template_name = "recipeimage_form.html"
     form_class = RecipeImageForm
