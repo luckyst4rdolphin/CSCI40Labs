@@ -47,7 +47,7 @@ class Recipe(models.Model):
 
 class RecipeIngredient(models.Model):
     '''
-    Connects recipe and ingredient models.
+    Connects recipe and ingredient models, also accepts quantity.
     '''
     Quantity = models.CharField(max_length=100)
     Ingredient = models.ForeignKey(
@@ -62,6 +62,9 @@ class RecipeIngredient(models.Model):
         )
     
 class RecipeImage(models.Model):
+    '''
+    Accepts image, description, and recipe.
+    '''
     image = models.ImageField(null=False, upload_to="images/")
     description = models.CharField(max_length=255)
     recipe = models.ForeignKey(
